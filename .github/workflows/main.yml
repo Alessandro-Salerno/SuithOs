@@ -28,7 +28,7 @@ jobs:
       # instll deps
       - name: install deps
         run: |
-          apt install mtools
+          sudo apt install mtools
       # Compile bootloader
       - name: Compile bootloader
         run: cd gnu-efi && make bootloader && cd ..
