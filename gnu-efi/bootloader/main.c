@@ -22,6 +22,5 @@ EFI_STATUS efi_main(EFI_HANDLE ImageHandle, EFI_SYSTEM_TABLE *SystemTable)
 		Print(L"Loaded kernel.elf\n");
 	}
 
-
 	return EFI_SUCCESS; // Exit the UEFI application
 }
