@@ -7,7 +7,7 @@ EFI_STATUS efi_main (EFI_HANDLE ImageHandle, EFI_SYSTEM_TABLE *SystemTable) {
 
 	ST = SystemTable; //Store the system table
 
-	Status = ST->ConOut->OutputString(ST->ConOut, L"HelloWorld!\n\r"); // Print HelloWorld to the console
+	Status = ST->ConOut->OutputString(ST->ConOut, L"Hello SuithBoot!\n\r"); // Print HelloWorld to the console
 
 	if (EFI_ERROR(Status)) //If printing failed, return
 		return Status;

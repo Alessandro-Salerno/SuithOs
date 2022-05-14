@@ -1,10 +1,10 @@
 
-OSNAME = CustomOS
+OSNAME = SuithOS
 
 GNUEFI = ../gnu-efi
 OVMFDIR = ../OVMFbin
 LDS = 
-CC = x86_64-w64-mingw32-gcc
+CC = gcc
 
 CFLAGS = -ffreestanding -fshort-wchar
 LDFLAGS = -T $(LDS) -shared -Bsymbolic -nostdlib
