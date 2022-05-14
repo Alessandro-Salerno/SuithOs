@@ -1,3 +1,4 @@
+![actions](https://github.com/AdawareDeveloper/SuithOs/actions/workflows/main.yml/badge.svg)
 # SuithOS
 > SuithOS is a toy os for learn how to make os
 # Deps
