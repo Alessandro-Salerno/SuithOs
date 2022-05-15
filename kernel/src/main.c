@@ -1,3 +1,5 @@
-int kernel_start(){
-    return 123;
+void kernel_start(){
+    
+    while (1);
+    
 }
