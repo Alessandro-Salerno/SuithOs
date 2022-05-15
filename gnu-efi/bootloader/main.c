@@ -94,16 +94,20 @@ EFI_STATUS efi_main(EFI_HANDLE ImageHandle, EFI_SYSTEM_TABLE *SystemTable)
 		}
 	}
 
+	SystemInfo sysinfo;
+
+
 	Print(L"Kernel Loaded!\r\n");
 	Print(L"Loading graphics...\r\n");
 	FrameBuffer* framebuffer =  ssb_init_graphics_protocol();
 	Print(L"Graphics loaded!\r\n");
+	sysinfo.framebuffer = framebuffer;
 	Print(L"Base: %d \n\r", framebuffer->BaseAddress);
 	Print(L"Size: %d \n\r", framebuffer->buffer_size);
 	Print(L"Width: %d \n\r", framebuffer->width);
 	Print(L"Height: %d \n\r", framebuffer->height);
 	Print(L"Pixel for scanline: %d \n\r", framebuffer->pixel_for_scanline);
-	void (*kernel_start)() = ((__attribute__((sysv_abi)) void (*)() ) header.e_entry);
+	void (*kernel_start)() = ((__attribute__((sysv_abi)) void (*)(SystemInfo) ) header.e_entry);
 
 	unsigned int y = 50;
 	unsigned int bbp = 4;
@@ -112,8 +116,8 @@ EFI_STATUS efi_main(EFI_HANDLE ImageHandle, EFI_SYSTEM_TABLE *SystemTable)
 	
 
 	Print(L"Calling kernel start\r\n");
-	ssb_clear_screen(framebuffer, 0x004A49);
 	
-	kernel_start();
+	
+	kernel_start(sysinfo);
 	return EFI_SUCCESS; // Exit the UEFI appalication
 }
