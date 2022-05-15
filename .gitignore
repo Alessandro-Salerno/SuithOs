@@ -1,1 +1,4 @@
 remote.sh
+ovmfbin
+kernel/bin/*
+kernel/lib/*
