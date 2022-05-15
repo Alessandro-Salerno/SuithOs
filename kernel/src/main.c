@@ -10,6 +10,6 @@ void kernel_graphics_clean_monitor(FrameBuffer* framebuffer, unsigned int color)
     }
 }
 void kernel_start(SystemInfo sysinfo){
-
+    kernel_graphics_clean_monitor(sysinfo.framebuffer, 0xFFFFFFFF);
 }
 

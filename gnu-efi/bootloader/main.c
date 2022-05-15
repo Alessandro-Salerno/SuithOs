@@ -109,8 +109,8 @@ EFI_STATUS efi_main(EFI_HANDLE ImageHandle, EFI_SYSTEM_TABLE *SystemTable)
 	Print(L"Pixel for scanline: %d \n\r", framebuffer->pixel_for_scanline);
 	void (*kernel_start)() = ((__attribute__((sysv_abi)) void (*)(SystemInfo) ) header.e_entry);
 
-	unsigned int y = 50;
-	unsigned int bbp = 4;
+	/*unsigned int y = 50;
+	unsigned int bbp = 4;*/
 
 
 	
