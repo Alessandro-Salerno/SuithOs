@@ -1,5 +1,8 @@
 #include <efi.h>
 #include <efilib.h>
+#include <ssb_bootloader_types.c>
+
+
 FrameBuffer frame_buffer;
 FrameBuffer* ssb_init_graphics_protocol(){
     EFI_GUID gop_guid = EFI_GRAPHICS_OUTPUT_PROTOCOL_GUID;
@@ -25,4 +28,13 @@ FrameBuffer* ssb_init_graphics_protocol(){
     frame_buffer.pixel_for_scanline = gop->Mode->Info->PixelsPerScanLine;
     
     return &frame_buffer;
+}
+
+void ssb_clear_screen(FrameBuffer* framebuffer, unsigned int color){
+    unsigned int* framebuffer_ptr = (unsigned int*)framebuffer->BaseAddress;
+    unsigned int* end_ptr = (unsigned int*)(framebuffer->BaseAddress + framebuffer->buffer_size);
+    while(framebuffer_ptr < end_ptr){
+        *framebuffer_ptr = color;
+        framebuffer_ptr++;
+    }
 }

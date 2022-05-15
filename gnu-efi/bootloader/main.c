@@ -1,6 +1,5 @@
 #include <efi.h>
 #include <efilib.h>
-#include <ssb_bootloader_types.c>
 #include <ssb_files.c>
 #include <elf.h>
 #include <ssb_graphics.c>
@@ -104,11 +103,17 @@ EFI_STATUS efi_main(EFI_HANDLE ImageHandle, EFI_SYSTEM_TABLE *SystemTable)
 	Print(L"Width: %d \n\r", framebuffer->width);
 	Print(L"Height: %d \n\r", framebuffer->height);
 	Print(L"Pixel for scanline: %d \n\r", framebuffer->pixel_for_scanline);
-
-
 	void (*kernel_start)() = ((__attribute__((sysv_abi)) void (*)() ) header.e_entry);
 
+	unsigned int y = 50;
+	unsigned int bbp = 4;
+
+
+	
+
 	Print(L"Calling kernel start\r\n");
+	ssb_clear_screen(framebuffer, 0x004A49);
+	
 	kernel_start();
 	return EFI_SUCCESS; // Exit the UEFI appalication
 }
