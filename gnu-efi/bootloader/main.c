@@ -1,7 +1,10 @@
 #include <efi.h>
 #include <efilib.h>
+#include <ssb_bootloader_types.c>
 #include <ssb_files.c>
 #include <elf.h>
+#include <ssb_graphics.c>
+
 
 // TODO: Add support for posix-efi
 
@@ -93,6 +96,15 @@ EFI_STATUS efi_main(EFI_HANDLE ImageHandle, EFI_SYSTEM_TABLE *SystemTable)
 	}
 
 	Print(L"Kernel Loaded!\r\n");
+	Print(L"Loading graphics...\r\n");
+	FrameBuffer* framebuffer =  ssb_init_graphics_protocol();
+	Print(L"Graphics loaded!\r\n");
+	Print(L"Base: %d \n\r", framebuffer->BaseAddress);
+	Print(L"Size: %d \n\r", framebuffer->buffer_size);
+	Print(L"Width: %d \n\r", framebuffer->width);
+	Print(L"Height: %d \n\r", framebuffer->height);
+	Print(L"Pixel for scanline: %d \n\r", framebuffer->pixel_for_scanline);
+
 
 	void (*kernel_start)() = ((__attribute__((sysv_abi)) void (*)() ) header.e_entry);
 
